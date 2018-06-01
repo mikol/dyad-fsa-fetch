@@ -9,14 +9,15 @@ npm install dyad-fsa-fetch
 ## Usage
 
 ```js
-import * as Dyad from 'dyad'
-import fetchMiddleware from './src/dyad-fsa-fetch'
-import promiseMiddleware from 'dyad-fsa-promise'
+require('isomorphic-fetch')
+const Dyad = require('dyad')
+const {middleware: dyadFsaFetch} = require('./dyad-fsa-fetch')
+const {middleware: dyadFsaPromise} = require('dyad-fsa-promise')
 
 const store = Dyad.getInstance()
 
-store.use(fetchMiddleware)
-store.use(promiseMiddleware)
+store.use(dyadFsaFetch)
+store.use(dyadFsaPromise)
 
 store.bind({
   ACTION_TYPE: (_, __, action) => console.log(action.payload.value[0].guid)
